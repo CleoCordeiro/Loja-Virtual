@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="itemCarrinho">
+      <h2 data-cy="itemCarrinhoDetailsHeading"><span jhiTranslate="lojaApp.itemCarrinho.detail.title">Item Carrinho</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ itemCarrinho.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.itemCarrinho.quantidade">Quantidade</span></dt>
+        <dd>
+          <span>{{ itemCarrinho.quantidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.itemCarrinho.precoTotal">Preco Total</span></dt>
+        <dd>
+          <span>{{ itemCarrinho.precoTotal }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.itemCarrinho.carrinho">Carrinho</span></dt>
+        <dd>
+          <div *ngIf="itemCarrinho.carrinho">
+            <a [routerLink]="['/carrinho', itemCarrinho.carrinho.id, 'view']">{{ itemCarrinho.carrinho.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.itemCarrinho.produto">Produto</span></dt>
+        <dd>
+          <div *ngIf="itemCarrinho.produto">
+            <a [routerLink]="['/produto', itemCarrinho.produto.id, 'view']">{{ itemCarrinho.produto.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/item-carrinho', itemCarrinho.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

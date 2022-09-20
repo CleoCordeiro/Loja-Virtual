@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="usuario">
+      <h2 data-cy="usuarioDetailsHeading"><span jhiTranslate="lojaApp.usuario.detail.title">Usuario</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ usuario.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.nome">Nome</span></dt>
+        <dd>
+          <span>{{ usuario.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.email">Email</span></dt>
+        <dd>
+          <span>{{ usuario.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.senha">Senha</span></dt>
+        <dd>
+          <span>{{ usuario.senha }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.dataNascimento">Data Nascimento</span></dt>
+        <dd>
+          <span>{{ usuario.dataNascimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.cpf">Cpf</span></dt>
+        <dd>
+          <span>{{ usuario.cpf }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.telefone">Telefone</span></dt>
+        <dd>
+          <span>{{ usuario.telefone }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.tipoUsuario">Tipo Usuario</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'lojaApp.TipoUsuario.' + usuario.tipoUsuario }}">{{ usuario.tipoUsuario }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.usuario.endereco">Endereco</span></dt>
+        <dd>
+          <div *ngIf="usuario.endereco">
+            <a [routerLink]="['/endereco', usuario.endereco.id, 'view']">{{ usuario.endereco.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/usuario', usuario.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

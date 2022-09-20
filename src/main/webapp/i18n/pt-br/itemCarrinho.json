@@ -1,0 +1,28 @@
+{
+  "lojaApp": {
+    "itemCarrinho": {
+      "home": {
+        "title": "Item Carrinhos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Item Carrinho",
+        "createOrEditLabel": "Criar ou editar Item Carrinho",
+        "search": "Pesquisar por Item Carrinho",
+        "notFound": "Nenhum Item Carrinho encontrado"
+      },
+      "created": "Um novo Item Carrinho foi criado com o identificador {{ param }}",
+      "updated": "Um Item Carrinho foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Item Carrinho foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Item Carrinho {{ id }}?"
+      },
+      "detail": {
+        "title": "Item Carrinho"
+      },
+      "id": "ID",
+      "quantidade": "Quantidade",
+      "precoTotal": "Preco Total",
+      "carrinho": "Carrinho",
+      "produto": "Produto"
+    }
+  }
+}

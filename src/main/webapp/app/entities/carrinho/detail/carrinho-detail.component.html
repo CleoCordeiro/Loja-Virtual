@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="carrinho">
+      <h2 data-cy="carrinhoDetailsHeading"><span jhiTranslate="lojaApp.carrinho.detail.title">Carrinho</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">Código</span></dt>
+        <dd>
+          <span>{{ carrinho.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.carrinho.dataCriacao">Data Criacao</span></dt>
+        <dd>
+          <span>{{ carrinho.dataCriacao | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.carrinho.dataAlteracao">Data Alteracao</span></dt>
+        <dd>
+          <span>{{ carrinho.dataAlteracao | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="lojaApp.carrinho.usuario">Usuario</span></dt>
+        <dd>
+          <div *ngIf="carrinho.usuario">
+            <a [routerLink]="['/usuario', carrinho.usuario.id, 'view']">{{ carrinho.usuario.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Voltar</span>
+      </button>
+
+      <button type="button" [routerLink]="['/carrinho', carrinho.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

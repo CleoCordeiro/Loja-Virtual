@@ -1,0 +1,10 @@
+{
+  "lojaApp": {
+    "TipoUsuario": {
+      "null": "",
+      "ADMINISTRADOR": "ADMINISTRADOR",
+      "CLIENTE": "CLIENTE",
+      "PROFISSIONAL": "PROFISSIONAL"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20220920023428",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "usuario",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataNascimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tipoUsuario",
+      "fieldType": "TipoUsuario",
+      "fieldValues": "ADMINISTRADOR,CLIENTE,PROFISSIONAL"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Usuario",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "endereco",
+      "relationshipName": "endereco",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
