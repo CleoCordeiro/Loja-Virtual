@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20220920023430",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "produto",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preco",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "quantidade",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Produto",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

@@ -48,6 +48,11 @@ public class CacheConfiguration {
             createCache(cm, br.com.cleo.loja.domain.User.class.getName());
             createCache(cm, br.com.cleo.loja.domain.Authority.class.getName());
             createCache(cm, br.com.cleo.loja.domain.User.class.getName() + ".authorities");
+            createCache(cm, br.com.cleo.loja.domain.Usuario.class.getName());
+            createCache(cm, br.com.cleo.loja.domain.Endereco.class.getName());
+            createCache(cm, br.com.cleo.loja.domain.Produto.class.getName());
+            createCache(cm, br.com.cleo.loja.domain.Carrinho.class.getName());
+            createCache(cm, br.com.cleo.loja.domain.ItemCarrinho.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

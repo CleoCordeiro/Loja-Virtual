@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-carrinho-heading" data-cy="CarrinhoCreateUpdateHeading" jhiTranslate="lojaApp.carrinho.home.createOrEditLabel">
+        Criar ou editar Carrinho
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lojaApp.carrinho.dataCriacao" for="field_dataCriacao">Data Criacao</label>
+          <div class="input-group">
+            <input
+              id="field_dataCriacao"
+              data-cy="dataCriacao"
+              type="text"
+              class="form-control"
+              name="dataCriacao"
+              ngbDatepicker
+              #dataCriacaoDp="ngbDatepicker"
+              formControlName="dataCriacao"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataCriacaoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lojaApp.carrinho.dataAlteracao" for="field_dataAlteracao">Data Alteracao</label>
+          <div class="input-group">
+            <input
+              id="field_dataAlteracao"
+              data-cy="dataAlteracao"
+              type="text"
+              class="form-control"
+              name="dataAlteracao"
+              ngbDatepicker
+              #dataAlteracaoDp="ngbDatepicker"
+              formControlName="dataAlteracao"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataAlteracaoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="lojaApp.carrinho.usuario" for="field_usuario">Usuario</label>
+          <select
+            class="form-control"
+            id="field_usuario"
+            data-cy="usuario"
+            name="usuario"
+            formControlName="usuario"
+            [compareWith]="compareUsuario"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="usuarioOption" *ngFor="let usuarioOption of usuariosSharedCollection">{{ usuarioOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

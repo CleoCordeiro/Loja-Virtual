@@ -1,0 +1,50 @@
+entity Usuario {
+    nome String
+    email String
+    senha String
+    dataNascimento LocalDate
+    cpf String
+    telefone String
+    tipoUsuario TipoUsuario
+}
+
+
+entity Endereco {
+    logradouro String
+    numero String
+    complemento String
+    bairro String
+    cidade String
+    estado String
+    cep String
+}
+
+enum TipoUsuario {
+    ADMINISTRADOR
+    CLIENTE
+    PROFISSIONAL
+}
+
+entity Produto {
+    nome String
+    descricao String
+    preco BigDecimal
+    quantidade Integer
+}
+
+entity Carrinho {
+    dataCriacao LocalDate
+    dataAlteracao LocalDate
+}
+
+entity ItemCarrinho {
+    quantidade Integer
+    precoTotal BigDecimal
+}
+
+relationship ManyToOne {
+    Usuario{endereco} to Endereco
+    Carrinho{usuario} to Usuario
+    ItemCarrinho{carrinho} to Carrinho
+    ItemCarrinho{produto} to Produto
+}

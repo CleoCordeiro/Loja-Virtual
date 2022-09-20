@@ -1,0 +1,143 @@
+<div>
+  <h2 id="page-heading" data-cy="ItemCarrinhoHeading">
+    <span jhiTranslate="lojaApp.itemCarrinho.home.title">Item Carrinhos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="lojaApp.itemCarrinho.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-item-carrinho"
+        [routerLink]="['/item-carrinho/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span class="hidden-sm-down" jhiTranslate="lojaApp.itemCarrinho.home.createLabel"> Criar novo Item Carrinho </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <form name="searchForm" class="row row-cols-sm-auto align-items-center">
+    <div class="col-sm-12">
+      <div class="input-group w-100 mt-3">
+        <label class="visually-hidden" for="currentSearch" jhiTranslate="lojaApp.itemCarrinho.home.search"
+          >Pesquisar por Item Carrinho</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="currentSearch"
+          id="currentSearch"
+          name="currentSearch"
+          placeholder="{{ 'lojaApp.itemCarrinho.home.search' | translate }}"
+        />
+
+        <button class="btn btn-info" (click)="search(currentSearch)">
+          <fa-icon icon="search"></fa-icon>
+        </button>
+
+        <button class="btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+          <fa-icon icon="trash-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="itemCarrinhos?.length === 0">
+    <span jhiTranslate="lojaApp.itemCarrinho.home.notFound">Nenhum Item Carrinho encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="itemCarrinhos && itemCarrinhos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">Código</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="quantidade">
+            <div class="d-flex">
+              <span jhiTranslate="lojaApp.itemCarrinho.quantidade">Quantidade</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="precoTotal">
+            <div class="d-flex">
+              <span jhiTranslate="lojaApp.itemCarrinho.precoTotal">Preco Total</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="carrinho.id">
+            <div class="d-flex">
+              <span jhiTranslate="lojaApp.itemCarrinho.carrinho">Carrinho</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="produto.id">
+            <div class="d-flex">
+              <span jhiTranslate="lojaApp.itemCarrinho.produto">Produto</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let itemCarrinho of itemCarrinhos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/item-carrinho', itemCarrinho.id, 'view']">{{ itemCarrinho.id }}</a>
+          </td>
+          <td>{{ itemCarrinho.quantidade }}</td>
+          <td>{{ itemCarrinho.precoTotal }}</td>
+          <td>
+            <div *ngIf="itemCarrinho.carrinho">
+              <a [routerLink]="['/carrinho', itemCarrinho.carrinho.id, 'view']">{{ itemCarrinho.carrinho.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="itemCarrinho.produto">
+              <a [routerLink]="['/produto', itemCarrinho.produto.id, 'view']">{{ itemCarrinho.produto.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/item-carrinho', itemCarrinho.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/item-carrinho', itemCarrinho.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(itemCarrinho)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

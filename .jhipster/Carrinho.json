@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20220920023431",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "carrinho",
+  "fields": [
+    {
+      "fieldName": "dataCriacao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dataAlteracao",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Carrinho",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "usuario",
+      "relationshipName": "usuario",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
